@@ -1,4 +1,4 @@
-import styles from './auth.module.scss';
+import styles from './authPages.module.scss';
 
 const Register = () => {
   return (

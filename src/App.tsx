@@ -1,11 +1,11 @@
-import { Login } from './pages/Auth/index';
+import { LoginPage } from './pages/Auth/index';
 
 import './index.scss';
 
 const App = () => {
   return (
     <div className="App">
-      <Login />
+      <LoginPage />
     </div>
   )
 };

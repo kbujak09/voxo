@@ -1,14 +1,16 @@
 import Logo from '../../components/Logo/index';
+import { Login } from '../../components/Auth/index';
 
-import styles from './auth.module.scss';
+import styles from './authPages.module.scss';
 
-const Login = () => {
+const LoginPage = () => {
   
   return (
     <div className={styles.container}>
       <Logo size={36}/>
+      <Login />
     </div>
   )
 };
 
-export default Login;
+export default LoginPage;

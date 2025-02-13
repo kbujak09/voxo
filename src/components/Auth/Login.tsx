@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styles from './auth.module.scss';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -16,21 +19,11 @@ const Login = () => {
     // alert('please provide valid input');
   };
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    
-    if (name === 'username') {
-      setUsername(value);
-    }
-
-    if (name === 'password') {
-      setPassword(value);
-    }
-  };
-
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
-      <div className={styles.title}>Login</div>
+      <div className={styles.title}>
+        Welcome back!
+      </div>
       <div className={styles.formCell}>
         <label 
           htmlFor="username" 
@@ -42,7 +35,7 @@ const Login = () => {
           name="username"
           type="text" 
           className={styles.input}
-          onChange={(e) => handleInput(e)}
+          onChange={(e) => setUsername(e.target.value)}
         />  
       </div>
       <div className={styles.formCell}>
@@ -56,13 +49,16 @@ const Login = () => {
           name="password"
           type="password" 
           className={styles.input}
-          onChange={(e) => handleInput(e)}
+          onChange={(e) => setPassword(e.target.value)}
         /> 
       </div>
       <div className={styles.submitContainer}>
         <button className={styles.submit}>
           LOGIN
         </button>
+      </div>
+      <div className={styles.switchContainer}>
+        Don't have an account? <span className={styles.switch} onClick={() => navigate('/register')}>Sign up</span>
       </div>
     </form>
   )

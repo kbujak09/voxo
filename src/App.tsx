@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
-import { LoginPage } from './pages/Auth/index';
+import { LoginPage, RegisterPage } from './pages/Auth/index';
 
 import './index.scss';
 
@@ -9,7 +9,9 @@ const App = () => {
     <div className="App">
       <HashRouter>
         <Routes>
-          <Route path='/' element={<LoginPage/>}/>
+          <Route path='/' element={<div></div>}/>
+          <Route path='/login' element={<LoginPage/>}/>
+          <Route path='/register' element={<RegisterPage/>}/>
         </Routes>
       </HashRouter>
     </div>

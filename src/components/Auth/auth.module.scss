@@ -1,0 +1,56 @@
+@use '../../vars' as v;
+
+.container {
+  width: 100%;
+}
+.formCell {
+  display: flex;
+  flex-direction: column;
+  margin: 24px 15vw;
+}
+.label {
+  margin: 0 0 4px 12px;
+  font-size: 14px;
+}
+.input {
+  padding: 4px 6px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  outline: 0;
+  font-size: 16px;
+}
+.input:focus {
+  border: 1px solid v.$gradient-blue;
+}
+.submitContainer {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+.submit {
+  font-size: 18px;
+  background: v.$gradient-blue;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.submit:active {
+  transform: scale(1.05);
+}
+.title {
+  font-size: 22px;
+  text-align: center;
+  padding-bottom: 8px;
+  font-weight: 700;
+  background: v.$gradient;  
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

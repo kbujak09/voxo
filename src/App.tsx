@@ -1,3 +1,5 @@
+import { HashRouter, Routes, Route } from 'react-router-dom';
+
 import { LoginPage } from './pages/Auth/index';
 
 import './index.scss';
@@ -5,7 +7,11 @@ import './index.scss';
 const App = () => {
   return (
     <div className="App">
-      <LoginPage />
+      <HashRouter>
+        <Routes>
+          <Route path='/' element={<LoginPage/>}/>
+        </Routes>
+      </HashRouter>
     </div>
   )
 };

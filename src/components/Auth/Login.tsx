@@ -6,17 +6,42 @@ import styles from './auth.module.scss';
 const Login = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [message, setMessage] = useState<string>('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    if (username !== '' && password !== '') {
-      // to do
-    }
+    try {
+      if (!username || !password) {
+        return setMessage('Username and password are required.');
+      }
+      else {
+        setMessage('');
+      }
 
-    // alert('please provide valid input');
+      const req = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        })
+      });
+  
+      const json = await req.json();
+  
+      if (!json.user) {
+        return setMessage(json.message);
+      }
+    }
+    catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -59,6 +84,9 @@ const Login = () => {
       </div>
       <div className={styles.switchContainer}>
         Don't have an account? <span className={styles.switch} onClick={() => navigate('/register')}>Sign up</span>
+      </div>
+      <div className={styles.errorMessage}>
+        {message}
       </div>
     </form>
   )

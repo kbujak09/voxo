@@ -10,8 +10,46 @@ const Register = () => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
+  const [message, setMessage] = useState<string>('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      if (!username || !password || !confirmPassword) {
+        return setMessage('All fields are required.')
+      }
+      else {
+        setMessage('');
+      }
+  
+      const req = await fetch('http://localhost:5000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          confirmPassword: confirmPassword
+        })
+      })
+  
+      const json = await req.json();
+
+      console.log(json)
+  
+      if (json.errors) {
+        return setMessage(json.errors[0].message || json.errors[0].msg);
+      }
+    } 
+    catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
-    <form className={styles.container}>
+    <form className={styles.container} onSubmit={handleSubmit}>
       <div className={styles.title}>
         Create an account
       </div>
@@ -64,6 +102,9 @@ const Register = () => {
       </div>
       <div className={styles.switchContainer}>
         Already have an account? <span onClick={() => {navigate('/login')}} className={styles.switch}>Log in</span>
+      </div>
+      <div className={styles.errorMessage}>
+        {message}
       </div>
     </form>
   )

@@ -10,7 +10,7 @@
   margin: 24px;
 
   &:focus-within .label {
-    color: v.$gradient-blue;
+    color: v.$main-blue;
   }
 }
 .label {
@@ -25,7 +25,7 @@
   font-size: 16px;
 }
 .input:focus {
-  border: 1px solid v.$gradient-blue;
+  border: 1px solid v.$main-blue;
 }
 .submitContainer {
   display: flex;
@@ -34,7 +34,7 @@
 }
 .submit {
   font-size: 20px;
-  background: v.$gradient-blue;
+  background: v.$main-blue;
   color: white;
   border: 0;
   outline: 0;
@@ -54,7 +54,7 @@
   text-align: center;
   padding-bottom: 8px;
   font-weight: 500;
-  background: v.$gradient;  
+  background: v.$main-blue;  
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -64,5 +64,18 @@
   font-size: 14px;
 }
 .switch {
-  color: v.$gradient-blue;
+  color: v.$main-blue;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.errorMessage {
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding-top: 12px;
+  margin: 0 24px;
 }

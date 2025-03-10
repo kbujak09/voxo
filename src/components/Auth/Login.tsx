@@ -24,13 +24,14 @@ const Login = () => {
 
       const req = await fetch('http://localhost:5000/login', {
         method: 'POST',
+        credentials: 'include',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: username,
           password: password,
-        })
+        }),
       });
   
       const json = await req.json();
@@ -38,6 +39,8 @@ const Login = () => {
       if (!json.user) {
         return setMessage(json.message);
       }
+
+      navigate('/');
     }
     catch (err) {
       console.error(err);

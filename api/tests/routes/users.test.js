@@ -1,6 +1,6 @@
-const request = require('supertest');
-const express = require('express');
-const usersRoutes = require('../../routes/users');
+import request from 'supertest';
+import express from 'express';
+import usersRoutes from '../../routes/users';
 
 jest.mock('../../controllers/userController', () => ({
   getUsers: (req, res) => res.json([{ id: '1', username: 'John Doe' }]),
@@ -27,7 +27,7 @@ describe('Users Routes', () => {
     expect(res.body).toHaveProperty('id', testId);
     expect(res.body).toHaveProperty('username', 'John Doe');
   });
-  
+
   test('GET /users/username/:username should return a user object', async () => {
     const testUsername = 'testUsername';
     const res = await request(app).get(`/users/username/${testUsername}`);

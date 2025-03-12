@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const { MongoMemoryServer } = require('mongodb-memory-server');
-const authController = require('../../controllers/authController');
-const User = require('../../models/user');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
+import mongoose from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import * as authController from '../../controllers/authController';
+import User from '../../models/user';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
 
 let mongoServer;
 
@@ -12,7 +12,7 @@ beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const mongoUri = mongoServer.getUri();
   await mongoose.connect(mongoUri);
-  console.log('MongoDB connected!')
+  console.log('MongoDB connected!');
 });
 
 afterAll(async () => {
@@ -38,15 +38,15 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'testuser',
           password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       bcrypt.hash.mockImplementation((password, saltRounds, cb) => cb(null, 'hashedpassword'));
 
       const res = {
         status: jest.fn().mockReturnThis(),
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       const next = jest.fn();
@@ -60,21 +60,21 @@ describe('Auth controller - signup', () => {
       expect(user).not.toBeNull();
       expect(user.password).toBe('hashedpassword');
     });
-    
+
     it('return status 403 when user exists', async () => {
       const req = {
         body: {
           username: 'testuser',
           password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       User.findOne = jest.fn().mockResolvedValue({ username: 'testuser' });
 
       const res = {
         status: jest.fn().mockReturnThis(),
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       const next = jest.fn();
@@ -84,7 +84,7 @@ describe('Auth controller - signup', () => {
       expect(res.status).toHaveBeenCalledWith(403);
       expect(res.json).toHaveBeenCalledWith({
         username: 'testuser',
-        errors: [{ message: 'Username is taken' }]
+        errors: [{ message: 'Username is taken' }],
       });
       expect(next).not.toHaveBeenCalled();
     });
@@ -94,15 +94,15 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'testuser',
           password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       User.findOne = jest.fn().mockReturnValue({ username: 'TestUser' });
 
       const res = {
         status: jest.fn().mockReturnThis(),
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       const next = jest.fn();
@@ -112,7 +112,7 @@ describe('Auth controller - signup', () => {
       expect(res.status).toHaveBeenCalledWith(403);
       expect(res.json).toHaveBeenCalledWith({
         username: 'testuser',
-        errors: [{ message: 'Username is taken' }]
+        errors: [{ message: 'Username is taken' }],
       });
       expect(next).not.toHaveBeenCalled();
     });
@@ -124,7 +124,7 @@ describe('Auth controller - signup', () => {
     beforeEach(() => {
       res = {
         status: jest.fn().mockReturnThis(),
-        json: jest.fn()
+        json: jest.fn(),
       };
       next = jest.fn();
     });
@@ -134,8 +134,8 @@ describe('Auth controller - signup', () => {
         body: {
           username: '',
           password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -146,8 +146,8 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: '',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'Username can not be empty.' })
-        ])
+          expect.objectContaining({ msg: 'Username can not be empty.' }),
+        ]),
       });
     });
 
@@ -156,8 +156,8 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'test user',
           password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -168,8 +168,8 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: 'test user',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'No spaces are allowed in the username.' })
-        ])
+          expect.objectContaining({ msg: 'No spaces are allowed in the username.' }),
+        ]),
       });
     });
 
@@ -178,8 +178,8 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'te',
           password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -190,30 +190,8 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: 'te',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'Username must contain at least 3 characters.' })
-        ])
-      });
-    });
-
-    it('validation error when username is shorter than 3 characters', async () => {
-      const req = {
-        body: {
-          username: 'testusertestuser2',
-          password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
-      };
-
-      for (const middleware of authController.signup) {
-        await middleware(req, res, next);
-      }
-
-      expect(res.status).toHaveBeenCalledWith(403);
-      expect(res.json).toHaveBeenCalledWith({
-        username: 'testusertestuser2',
-        errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'Username can not be longer than 16 characters.' })
-        ])
+          expect.objectContaining({ msg: 'Username must contain at least 3 characters.' }),
+        ]),
       });
     });
 
@@ -222,8 +200,8 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'testusertestuser2',
           password: 'testpassword',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -234,8 +212,8 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: 'testusertestuser2',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'Username can not be longer than 16 characters.' })
-        ])
+          expect.objectContaining({ msg: 'Username can not be longer than 16 characters.' }),
+        ]),
       });
     });
 
@@ -244,8 +222,8 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'testuser',
           password: '',
-          confirmPassword: 'testpassword'
-        }
+          confirmPassword: 'testpassword',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -256,8 +234,8 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: 'testuser',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'Password can not be empty.' })
-        ])
+          expect.objectContaining({ msg: 'Password can not be empty.' }),
+        ]),
       });
     });
 
@@ -266,8 +244,8 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'testuser',
           password: 'test password',
-          confirmPassword: 'test password'
-        }
+          confirmPassword: 'test password',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -278,8 +256,8 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: 'testuser',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'No spaces are allowed in the password.' })
-        ])
+          expect.objectContaining({ msg: 'No spaces are allowed in the password.' }),
+        ]),
       });
     });
 
@@ -288,8 +266,8 @@ describe('Auth controller - signup', () => {
         body: {
           username: 'testuser',
           password: 'testpa',
-          confirmPassword: 'testpa'
-        }
+          confirmPassword: 'testpa',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -300,18 +278,18 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: 'testuser',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'Password must contain at least 8 characters.' })
-        ])
+          expect.objectContaining({ msg: 'Password must contain at least 8 characters.' }),
+        ]),
       });
     });
 
-    it('validation error when password is shorter than 8 characters', async () => {
+    it('validation error when passwords do not match', async () => {
       const req = {
         body: {
           username: 'testuser',
           password: 'testpassword',
-          confirmPassword: 'testpa'
-        }
+          confirmPassword: 'testpa',
+        },
       };
 
       for (const middleware of authController.signup) {
@@ -322,8 +300,8 @@ describe('Auth controller - signup', () => {
       expect(res.json).toHaveBeenCalledWith({
         username: 'testuser',
         errors: expect.arrayContaining([
-          expect.objectContaining({ msg: 'Passwords do not match.' })
-        ])
+          expect.objectContaining({ msg: 'Passwords do not match.' }),
+        ]),
       });
     });
   });
@@ -340,7 +318,7 @@ describe('Auth controller - login', () => {
 
     mockUser = new User({
       username: 'testuser',
-      password: 'testpassword'
+      password: 'testpassword',
     });
 
     await mockUser.save();
@@ -362,14 +340,14 @@ describe('Auth controller - login', () => {
         username: 'testuser',
         password: 'testpassword',
       },
-      login: jest.fn().mockImplementation((user, options, cb) => cb())
-    }
+      login: jest.fn().mockImplementation((user, options, cb) => cb()),
+    };
 
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
-      cookie: jest.fn()
-    }
+      cookie: jest.fn(),
+    };
 
     const next = jest.fn();
 
@@ -379,13 +357,13 @@ describe('Auth controller - login', () => {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       maxAge: 86400000,
-      sameSite: 'strict'
+      sameSite: 'strict',
     }));
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       message: 'Login successful',
-      user: mockUser
+      user: mockUser,
     });
   });
 
@@ -397,16 +375,16 @@ describe('Auth controller - login', () => {
     const req = {
       body: {
         username: 'notvaliduser',
-        password: 'notvalidpassword'
+        password: 'notvalidpassword',
       },
-      login: jest.fn().mockImplementation((user, options, cb) => cb())
-    }
+      login: jest.fn().mockImplementation((user, options, cb) => cb()),
+    };
 
     const res = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
-      cookie: jest.fn()
-    }
+      cookie: jest.fn(),
+    };
 
     const next = jest.fn();
 
@@ -415,7 +393,7 @@ describe('Auth controller - login', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(
       expect.objectContaining({
-        message: 'Invalid credentials'
+        message: 'Invalid credentials',
       }),
     );
   });

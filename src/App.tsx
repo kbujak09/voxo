@@ -8,9 +8,9 @@ import './index.scss';
 
 const App = () => {
   return (
-    <AuthProvider>
-      <div className="App">
-        <HashRouter>
+    <HashRouter>
+      <AuthProvider>
+        <div className="App">
           <Routes>
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/register' element={<RegisterPage/>}/>
@@ -18,9 +18,9 @@ const App = () => {
               <Route path='/' element={<div>placeholder</div>}/>
             </Route>
           </Routes>
-        </HashRouter>
-      </div>
-    </AuthProvider>
+        </div>
+      </AuthProvider>
+    </HashRouter>
   )
 };
 

@@ -1,11 +1,11 @@
-const express = require('express');
-const request = require('supertest');
-
-const User = require('../../models/user');
-const { 
+import express from 'express';
+import request from 'supertest';
+import User from '../../models/user';
+import { 
   getUserById, 
   getUserByUsername, 
-  getUsers } = require('../../controllers/userController'); 
+  getUsers 
+} from '../../controllers/userController'; 
 
 jest.mock('../../models/user');
 
@@ -111,5 +111,3 @@ describe('User Controller Tests', () => {
     });
   });
 });
-
-

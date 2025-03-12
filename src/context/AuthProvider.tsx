@@ -1,10 +1,13 @@
 import { createContext, ReactNode, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { UserType, AuthContextType } from '../types/auth';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+    const navigate = useNavigate()
+
     const [user, setUser] = useState<UserType | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -17,16 +20,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 },
                 credentials: 'include'
             });
-            if (!res.ok) {
-                return console.log('err');
+
+            if (res.status !== 200) {
+                setIsAuthenticated(false);
+                navigate('/login');
+                return;
             }
+
             const json = await res.json();
-            setIsAuthenticated(true);
-            setUser(json.user);
+
+            if (json.user) {
+                setIsAuthenticated(true);
+                setUser(json.user);
+            }
         }
         catch (err) {
-            setUser(null);
             console.error(err);
+            setIsAuthenticated(false);
+            navigate('/login');
+            return;
         }
         finally {
             setLoading(false);
@@ -35,10 +47,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         checkAuth();
-    }, []);
+    }, [user]);
 
     return (
-        <AuthContext.Provider value={{ user, loading, checkAuth, isAuthenticated }}>
+        <AuthContext.Provider value={{ user, loading, checkAuth, isAuthenticated, setUser }}>
             {children}
         </AuthContext.Provider>
     );

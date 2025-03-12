@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type UserType = {
     id: string;
     username: string;
@@ -8,4 +10,5 @@ export type AuthContextType = {
     loading: boolean;
     isAuthenticated: boolean | null;
     checkAuth: () => Promise<void>;
+    setUser: Dispatch<SetStateAction<UserType | null>>;
 }

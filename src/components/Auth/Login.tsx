@@ -7,7 +7,7 @@ import styles from './auth.module.scss';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, setUser } = useAuth();
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -42,6 +42,8 @@ const Login = () => {
       if (!json.user) {
         return setMessage(json.message);
       }
+
+      setUser(json.user);
 
       navigate('/');
     }

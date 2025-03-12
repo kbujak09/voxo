@@ -1,37 +1,47 @@
-// import { createContext, ReactNode, useState, useEffect } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 
-// const AuthContext = createContext<AuthContextType | undefined>(undefined);
+import { UserType, AuthContextType } from '../types/auth';
 
-// export const AuthProvider = ({ children }: { children: ReactNode }) => {
-//     const [user, setUser] = useState<User | null>(null);
-//     const [loading, setLoading] = useState<boolean>(true);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-//     const checkAuth = async () => {
-//         try {
-//             const res = await fetch('http://localhost:5000/auth', {
-//                 method: 'GET',
-//                 credentials: 'include'
-//             });
-//             if (!res.ok) {
-//                 return console.log('err');
-//             }
-//             const json = await res.json();
-//             setUser(json.user);
-//         }
-//         catch (err) {
-//             setUser(null);
-//             console.error(err);
-//         }
-//         setLoading(false);
-//     }
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+    const [user, setUser] = useState<UserType | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
-//     useEffect(() => {
-//         checkAuth();
-//     }, []);
+    const checkAuth = async () => {
+        try {
+            const res = await fetch('http://localhost:5000/auth', {
+                headers: {
+                    'Access-Control-Allow-Credentials': 'true'
+                },
+                credentials: 'include'
+            });
+            if (!res.ok) {
+                return console.log('err');
+            }
+            const json = await res.json();
+            setIsAuthenticated(true);
+            setUser(json.user);
+        }
+        catch (err) {
+            setUser(null);
+            console.error(err);
+        }
+        finally {
+            setLoading(false);
+        }
+    }
 
-//     return (
-//         <AuthContext.Provider value={{ user, loading, checkAuth }}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// }
+    useEffect(() => {
+        checkAuth();
+    }, []);
+
+    return (
+        <AuthContext.Provider value={{ user, loading, checkAuth, isAuthenticated }}>
+            {children}
+        </AuthContext.Provider>
+    );
+}
+
+export default AuthContext;

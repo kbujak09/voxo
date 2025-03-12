@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+
+import useAuth from "../../hooks/useAuth";
 
 import styles from './auth.module.scss';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -46,6 +49,10 @@ const Login = () => {
       console.error(err);
     }
   };
+
+  if (isAuthenticated) {
+    return <Navigate to={'/'} />
+  }
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>

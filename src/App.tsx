@@ -3,6 +3,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import { LoginPage, RegisterPage } from './pages/Auth/index';
 import ProtectedRoute from './components/ProtectedRoute/index';
 import { AuthProvider } from './context/AuthProvider';
+import MainPage from './pages/Main/index';
 
 import './index.scss';
 
@@ -15,7 +16,7 @@ const App = () => {
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/register' element={<RegisterPage/>}/>
             <Route element={<ProtectedRoute/>}>
-              <Route path='/' element={<div>placeholder</div>}/>
+              <Route path='/' element={<MainPage/>}/>
             </Route>
           </Routes>
         </div>

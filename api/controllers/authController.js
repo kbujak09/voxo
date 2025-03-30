@@ -102,3 +102,15 @@ export const checkAuth = asyncHandler(async (req, res, next) => {
     res.status(200).json({ user: decoded });
   });
 });
+
+
+export const logout = asyncHandler(async (req, res, next) => {
+  res.cookie('token', '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: new Date(0),
+    sameSite: 'strict'
+  });
+
+  return res.status(200).json({ message: 'Logout successful' });
+});

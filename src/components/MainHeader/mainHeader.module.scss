@@ -1,0 +1,12 @@
+@use '../../vars' as v;
+
+.page {
+  font-weight: 500;
+  font-size: 24px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+}

@@ -1,8 +1,15 @@
+import LogoutButton from '../LogoutButton';
+
 import styles from './mainHeader.module.scss';
 
-const MainHeader = () => {
+const MainHeader = ({ page }: { page: string }) => {
   return (
-    <div className={styles.container}>header</div>
+    <div className={styles.container}>
+      <div className={styles.page}>
+        { page }
+      </div>
+      <LogoutButton size={24}/>
+    </div>
   )
 };
 

@@ -1,0 +1,21 @@
+@use '../../vars' as v;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+.image {
+  width: 24px;
+}
+.text {
+  font-size: 14px;
+  font-weight: 500;
+}
+.active > .image {
+ filter: v.$main-blue-filter;
+}
+.active > .text {
+  color: v.$main-blue;
+}

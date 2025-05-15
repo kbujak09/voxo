@@ -79,3 +79,38 @@
   padding-top: 12px;
   margin: 0 24px;
 }
+@media (min-width: 600px) {
+  .formCell {
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }
+}
+@media (min-width: 900px) {
+  .formCell {
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+}
+@media (min-width: 1200px) {
+  .formCell {
+    margin-left: 35vw;
+    margin-right: 35vw;
+  }
+  .label {
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+  .input {
+    padding: 8px;
+    font-size: 17px;
+  }
+  .title {
+    font-size: 32px;
+    padding-bottom: 12px;
+  }
+  .submit {
+    font-size: 23px;
+    margin: 8px 0;
+    padding: 8px 12px;
+  }
+}

@@ -2,6 +2,8 @@
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   box-sizing: border-box;
+}
+.content {
+  flex: 1;
 }

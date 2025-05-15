@@ -15,23 +15,20 @@ const Main = () => {
     setPage(page);
   }
 
-  const renderChosenPage = () => {
-    switch (page) {
-      case 'Chats':
-        return <Chats />
-      case 'People':
-        return <div>tbd</div>
-      case 'Menu':
-        return <div>tbd</div>
-    }
-  }
-
   return (
     <div className={styles.container}>
       <MainHeader page={page}/>
-      { 
-      renderChosenPage()
-      }
+      <div className={styles.content}>
+        <div style={{ display: page === 'Chats' ? 'block' : 'none' }}>
+          <Chats />
+        </div>
+        <div style={{ display: page === 'People' ? 'block' : 'none' }}>
+          <div>tbd</div>
+        </div>
+        <div style={{ display: page === 'Menu' ? 'block' : 'none' }}>
+          <div>tbd</div>
+        </div>
+      </div>
       <Nav onNavClick={handlePageChange} chosenPage={page} />  
     </div>
   )

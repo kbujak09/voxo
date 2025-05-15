@@ -97,7 +97,7 @@ const Register = () => {
       </div>
       <div className={styles.submitContainer}>
         <button className={styles.submit}>
-          Sign up
+          SIGN UP
         </button>
       </div>
       <div className={styles.switchContainer}>

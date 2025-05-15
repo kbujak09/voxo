@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 
 import usersRouter from './routes/users.js';
 import authRouter from './routes/auth.js';
+import chatsRouter from './routes/chats.js';
 
 import './auth/auth.js';
 
@@ -33,4 +34,7 @@ app.listen(PORT, (error) => {
 });
 
 app.use('/', usersRouter);
+
 app.use('/', authRouter);
+
+app.use('/', chatsRouter);

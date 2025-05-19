@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 export type UserType = {
   _id: string;
   username: string;
+  avatar: string;
 }
 
 export type AuthContextType = {

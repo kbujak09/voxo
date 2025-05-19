@@ -1,8 +1,8 @@
-import LogoutButton from '../LogoutButton';
+import LogoutButton from '../../../../components/LogoutButton';
 
-import styles from './mainHeader.module.scss';
+import styles from './header.module.scss';
 
-const MainHeader = ({ page }: { page: string }) => {
+const Header = ({ page }: { page: string }) => {
   return (
     <div className={styles.container}>
       <div className={styles.page}>
@@ -13,4 +13,4 @@ const MainHeader = ({ page }: { page: string }) => {
   )
 };
 
-export default MainHeader;
+export default Header;

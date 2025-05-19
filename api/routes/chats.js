@@ -7,4 +7,6 @@ router.post('/chats', chatController.createChat);
 
 router.get('/chats', chatController.getChats);
 
+router.get('/chats/:chatId', chatController.getChat);
+
 export default router;

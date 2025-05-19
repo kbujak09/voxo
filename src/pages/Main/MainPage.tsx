@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { PagesType } from '../../types/main';
 
-import MainHeader from '../../components/MainHeader';
-import Nav from '../../components/Nav';
-import Chats from '../../components/Chats';
+import Header from './components/Header';
+import Nav from './components/Nav';
+import Chats from './components/Chats';
 
 import styles from './mainPage.module.scss';
 
@@ -17,7 +17,7 @@ const Main = () => {
 
   return (
     <div className={styles.container}>
-      <MainHeader page={page}/>
+      <Header page={page}/>
       <div className={styles.content}>
         <div style={{ display: page === 'Chats' ? 'block' : 'none' }}>
           <Chats />

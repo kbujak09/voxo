@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../../hooks/useAuth";
 
-import styles from './auth.module.scss';
+import styles from '../auth.module.scss';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, setUser } = useAuth();
+  const { isAuthenticated, setUser, checkAuth } = useAuth();
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -45,7 +45,7 @@ const Login = () => {
 
       setUser(json.user);
 
-      navigate('/');
+      checkAuth();
     }
     catch (err) {
       console.error(err);

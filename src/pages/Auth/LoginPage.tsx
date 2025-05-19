@@ -1,6 +1,6 @@
 import Logo from '../../components/Logo';
-import { Login } from '../../components/Auth';
-import Footer from '../../components/Footer';
+import { Login } from './components/Login';
+import Footer from './components/Footer';
 
 import styles from './authPages.module.scss';
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../../hooks/useAuth';
 import ChatCard from '../ChatCard';
-import { ChatCardType } from '../../types/chats';
+import { ChatCardType } from '../../../../types/chats';
 
 import styles from './chats.module.scss';
 
@@ -31,7 +31,6 @@ const Chats = () => {
       const json = await res.json();
 
       setChats(json);
-      console.log(json)
     }
     catch (err) {
       console.error(err);

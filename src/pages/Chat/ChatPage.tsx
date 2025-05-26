@@ -5,6 +5,7 @@ import Header from './components/Header';
 import useAuth from '../../hooks/useAuth';
 import { UserType } from '../../types/auth';
 import Loading from '../../components/Loading';
+import InputBar from './components/InputBar';
 
 import styles from './chatpage.module.scss';
 
@@ -49,6 +50,7 @@ const ChatPage = () => {
     return (
       <div className={styles.container}>
         <Header username={chatPartner.username}/>
+        <InputBar />
       </div>
     )
   }

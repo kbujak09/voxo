@@ -3,9 +3,19 @@ import Chat from '../models/chat.js';
 
 export const createChat = asyncHandler(async (req, res, next) => {
   try {
-    const participants = [ '682731fd47d9b9cfaf8e1c57',
-      '682755872648e6e765aba9b2'
-     ]
+    const { participants } = req.body;
+
+    if (!participants || !Array.isArray(participants || participants.length < 2)) {
+      return res.status(400).json({ error: 'At least two participant IDs are required.'});
+    }
+
+    const existingChat = await Chat.findOne({
+      participants: { $all: participants, $size: participants.length },
+    });
+
+    if (existingChat) {
+      return res.status(200).json(existingChat);
+    }
 
     const chat = new Chat({
       participants: participants
@@ -13,7 +23,7 @@ export const createChat = asyncHandler(async (req, res, next) => {
 
     await chat.save();
 
-    res.json()
+    res.status(201).json({ message: 'Chat created successfully!' });
   }
   catch (err) {
     res.status(500).json({ 'error': 'Error while creating new chat'})
@@ -68,5 +78,3 @@ export const getChat = asyncHandler(async (req, res, next) => {
     res.status(500).json({ error: 'Error while fetching chat data' });
   }
 });
-
-

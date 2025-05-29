@@ -1,4 +1,4 @@
-import NavButton from '../NavButton';
+import NavButton from './components/NavButton';
 
 import { PagesType } from '../../../../types/main';
 

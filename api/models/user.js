@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   password: { type: String, required: true, minLength: 8 },
   online: { type: Boolean, default: false },
   avatar: { type: String, default: '' },
+  friends: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 }, { timestamps: true });
 
 export default mongoose.model('User', UserSchema);

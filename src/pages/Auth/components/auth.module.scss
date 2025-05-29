@@ -92,9 +92,12 @@
   }
 }
 @media (min-width: 1200px) {
+  .container {
+    margin-bottom: 4vh;
+  }
   .formCell {
-    margin-left: 36vw;
-    margin-right: 36vw;
+    margin-left: 34vw;
+    margin-right: 34vw;
   }
   .label {
     margin-bottom: 12px;
@@ -111,5 +114,11 @@
   .submit {
     margin: 8px 0;
     padding: 8px 12px;
+  }
+}
+@media (min-width: 1500px) {
+  .formCell {
+    margin-left: 38vw;
+    margin-right: 38vw;
   }
 }

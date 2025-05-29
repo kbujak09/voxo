@@ -1,10 +1,10 @@
 .container {
   position: relative;
   animation: slideIn 0.3s ease-out forwards;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 100dvh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 @keyframes slideIn {

@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
 import styles from './text-input.module.scss';
 
@@ -7,19 +7,29 @@ type TextInputProps = {
 }
 
 const TextInput = ({ setIsNotEmpty }: TextInputProps) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsNotEmpty(e.target.value.trim() !== '');
-  }
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [height, setHeight] = useState(30);
+
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const textarea = e.target;
+    const value = textarea.value;
+    setIsNotEmpty(value.trim() !== '');
+
+    const newHeight = value.length === 0 ? 30 : 30 + Math.floor((value.length - 1) / 25) * 19.2;  
+    setHeight(newHeight);
+  };
 
   return (
     <div className={styles.container}>
-      <input 
-        type="text" 
+      <textarea 
         id='chat-text-input'
         className={styles.input}
         placeholder='Aa'
+        ref={textareaRef}
         onChange={handleChange}
-      />
+        style={{ height: `${height}px` }}
+      >
+      </textarea>
     </div>
   )
 };

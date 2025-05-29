@@ -1,13 +1,13 @@
 import styles from './navButton.module.scss';
 
-type Props = {
+type NavButtonProps = {
   text: string,
   image: string,
   onClick: () => void,
   isActive: boolean
 }
 
-const NavButton = ({text, image, onClick, isActive}: Props) => {
+const NavButton = ({text, image, onClick, isActive}: NavButtonProps) => {
   return (
     <div className={`${styles.container} ${isActive ? styles.active : ''}`} onClick={onClick}>
       <img 

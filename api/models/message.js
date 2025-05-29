@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const MessageSchema = new Schema({
   sender: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  chat: { type: Schema.Types.ObjectId, ref: 'Chat', required:true },
   content: { type: String, required: true },
   timestamp: { type: Date, default: Date.now },
   type: { type: String, enum: ['text', 'image', 'video', 'file'], default: 'text' },

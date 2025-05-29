@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { UserType } from '../../../../types/auth';
-import { ChatCardType } from '../../../../types/chats';
-import useAuth from '../../../../hooks/useAuth';
-import Avatar from '../../../../components/Avatar';
+import { UserType } from '../../../../../../types/auth';
+import { ChatCardType } from '../../../../../../types/chats';
+import useAuth from '../../../../../../hooks/useAuth';
+import Avatar from '../../../../../../components/Avatar';
 
 import styles from './chatcard.module.scss';
 

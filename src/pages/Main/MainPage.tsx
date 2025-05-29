@@ -5,6 +5,7 @@ import { PagesType } from '../../types/main';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Chats from './components/Chats';
+import People from './components/People';
 
 import styles from './mainPage.module.scss';
 
@@ -23,7 +24,7 @@ const Main = () => {
           <Chats />
         </div>
         <div style={{ display: page === 'People' ? 'block' : 'none' }}>
-          <div>tbd</div>
+          <People />
         </div>
         <div style={{ display: page === 'Menu' ? 'block' : 'none' }}>
           <div>tbd</div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import useAuth from '../../../../hooks/useAuth';
-import ChatCard from '../ChatCard';
+import ChatCard from './components/ChatCard';
 import { ChatCardType } from '../../../../types/chats';
 
 import styles from './chats.module.scss';

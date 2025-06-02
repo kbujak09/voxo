@@ -7,7 +7,9 @@ const UserSchema = new Schema({
   password: { type: String, required: true, minLength: 8 },
   online: { type: Boolean, default: false },
   avatar: { type: String, default: '' },
-  friends: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  receivedRequests: [{ type: Schema.Types.ObjectId, ref: 'FriendRequest' }],
+  sendRequests: [{ type: Schema.Types.ObjectId, ref: 'FriendRequest' }]
 }, { timestamps: true });
 
 export default mongoose.model('User', UserSchema);

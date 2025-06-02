@@ -42,6 +42,17 @@ export const getUsers = asyncHandler(async (req, res, next) => {
     return res.status(200).json(users);
   }
   catch (err) {
-    res.status(500).json({ 'error': `Error while fetching all users: ${err.message} `});
+    res.status(500).json({ 'error': `Error while fetching all users: ${err.message}` });
+  }
+});
+
+export const getSuggestedUsers = asyncHandler(async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    const users = await User.find({});
+  }
+  catch (err) {
+    res.status(500).json({ 'error': `Error while fetching suggested users: ${err.message}` });
   }
 });

@@ -23,7 +23,7 @@ const Register = () => {
         setMessage('');
       }
   
-      const req = await fetch('http://localhost:5000/signup', {
+      const req = await fetch(`${import.meta.env.VITE_API}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

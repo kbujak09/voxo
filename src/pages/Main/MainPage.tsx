@@ -7,7 +7,7 @@ import Nav from './components/Nav';
 import Chats from './components/Chats';
 import People from './components/People';
 
-import styles from './mainPage.module.scss';
+import styles from './main-page.module.scss';
 
 const Main = () => {
   const [page, setPage] = useState<PagesType>('Chats');

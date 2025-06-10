@@ -7,7 +7,7 @@ import { UserType } from '../../types/auth';
 import Loading from '../../components/Loading';
 import InputBar from './components/InputBar';
 
-import styles from './chatpage.module.scss';
+import styles from './chat-page.module.scss';
 
 const ChatPage = () => {
   const { user } = useAuth();
@@ -21,7 +21,7 @@ const ChatPage = () => {
 
   const fetchChat = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/chats/${chatId}`);
+      const res = await fetch(`${import.meta.env.VITE_API}/chats/${chatId}`);
 
       if (!res.ok) {
         return;

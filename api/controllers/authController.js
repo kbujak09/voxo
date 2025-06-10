@@ -3,7 +3,7 @@ import passport from 'passport';
 import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import asyncHandler from 'express-async-handler';
-import User from '../models/user.js';
+import User from '../models/User.js';
 
 export const signup = [
   body('username')

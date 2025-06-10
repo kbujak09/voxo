@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkAuth = async () => {
       try {
-          const res = await fetch('http://localhost:5000/auth', {
+          const res = await fetch(`${import.meta.env.VITE_API}/auth`, {
               headers: {
                   'Access-Control-Allow-Credentials': 'true'
               },

@@ -6,7 +6,7 @@ import { ChatCardType } from '../../../../../../types/chats';
 import useAuth from '../../../../../../hooks/useAuth';
 import Avatar from '../../../../../../components/Avatar';
 
-import styles from './chatcard.module.scss';
+import styles from './chat-card.module.scss';
 
 const ChatCard = ({data}: {data: ChatCardType}) => {
   const { user } = useAuth();

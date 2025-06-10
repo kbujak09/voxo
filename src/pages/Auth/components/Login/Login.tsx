@@ -25,7 +25,7 @@ const Login = () => {
         setMessage('');
       }
 
-      const req = await fetch('http://localhost:5000/login', {
+      const req = await fetch(`${import.meta.env.VITE_API}/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {

@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import FriendRequest from '../models/FriendRequest.js';
-import User from '../models/user.js';
+import User from '../models/User.js';
 
 export const createFriendRequest = asyncHandler(async (req, res, next) => {
   const { from, to } = req.body;

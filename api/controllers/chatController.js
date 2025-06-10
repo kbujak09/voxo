@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler';
-import Chat from '../models/chat.js';
+import Chat from '../models/Chat.js';
 
 export const createChat = asyncHandler(async (req, res, next) => {
   try {

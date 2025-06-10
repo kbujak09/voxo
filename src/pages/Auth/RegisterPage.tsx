@@ -2,7 +2,7 @@ import Logo from '../../components/Logo';
 import { Register } from './components/Register';
 import Footer from './components/Footer';
 
-import styles from './authPages.module.scss';
+import styles from './auth-pages.module.scss';
 
 const RegisterPage = () => {
   return (

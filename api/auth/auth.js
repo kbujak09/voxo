@@ -1,9 +1,8 @@
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
-import passportJWT from 'passport-jwt';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JWTStrategy, ExtractJwt as ExtractJWT } from 'passport-jwt';
-import User from '../models/user.js';
+import User from '../models/User.js';
 
 import dotenv from 'dotenv';
 dotenv.config();

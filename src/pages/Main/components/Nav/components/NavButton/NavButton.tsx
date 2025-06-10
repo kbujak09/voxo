@@ -1,4 +1,4 @@
-import styles from './navButton.module.scss';
+import styles from './nav-button.module.scss';
 
 type NavButtonProps = {
   text: string,

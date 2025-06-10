@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react"
 
-const useFriendsData = () => {
+const useFriendsData = (userId: string | undefined) => {
   const [friends, setFriends] = useState([]);
-  const [requests, setRequests] = useState([]);
+  const [receivedRequests, setReceivedRequests] = useState([]);
+  const [sentRequests, setSentRequests] = useState([]);
   const [suggested, setSuggested] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const apiLink = import.meta.env.VITE_API;
+
   useEffect(() => {
     Promise.all([
-      fetch(''),
-      fetch(''),
-      fetch('')
+      fetch(`${apiLink}/users/${userId}/friends`),
+      fetch(`${apiLink}/requests/${userId}/received`),
+      fetch(`${apiLink}/requests/${userId}/sent`),
+      fetch(`${apiLink}/users/${userId}/suggested`)
     ])
-    .then(async ([fData, rData, sData]) => {
+    .then(async ([fData, rrData, srData, sData]) => {
       setFriends(await fData.json());
-      setRequests(await rData.json());
+      setReceivedRequests(await rrData.json());
+      setSentRequests(await srData.json());
       setSuggested(await sData.json());
     })
     .catch(err => console.error(err))
@@ -23,7 +28,8 @@ const useFriendsData = () => {
 
   return {
     friends,
-    requests,
+    receivedRequests,
+    sentRequests,
     suggested,
     loading
   };

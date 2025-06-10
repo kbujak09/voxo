@@ -47,12 +47,56 @@ export const getUsers = asyncHandler(async (req, res, next) => {
 });
 
 export const getSuggestedUsers = asyncHandler(async (req, res, next) => {
-  try {
-    const { userId } = req.params;
+  const { userId } = req.params;
+  
+  if (!userId) {
+    throw new Error('No userId provided while fetching suggested users');
+  }
 
-    const users = await User.find({});
+  const suggestedUsers = await User.find({
+    friends: { $ne: userId },
+    _id: { $ne: userId }
+  })
+  .select('username avatar');
+
+  res.status(200).json(suggestedUsers);
+});
+
+export const getRandomSuggestedUsers = asyncHandler(async (req, res, next) => {
+  const { userId } = req.params;
+  
+  if (!userId) {
+    throw new Error('No userId provided while fetching suggested users');
   }
-  catch (err) {
-    res.status(500).json({ 'error': `Error while fetching suggested users: ${err.message}` });
+
+  const suggestedUsers = await User.aggregate([
+    {
+      $match: {
+        friends: { $ne: userId },
+        _id: { $ne: userId }
+      }
+    },
+    { $sample: { size: 3 } },
+    { $project: { username: 1, avatar: 1 } }
+  ]);
+
+  res.status(200).json(suggestedUsers);
+});
+
+export const getUserFriends = asyncHandler(async (req, res, next) => {
+  const { userId } = req.params;
+
+  if (!userId) {
+    res.status(400);
+    throw new Error('No userId provided while fetching user friends');
   }
+
+  const user = await User.findById(userId).populate('friends', 'username avatar online');
+
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  } 
+
+  res.status(200).json(user.friends);
 });

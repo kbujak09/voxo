@@ -6,4 +6,10 @@ import * as friendRequestController from '../controllers/friendRequestController
 
 router.post('/requests', friendRequestController.createFriendRequest);
 
+router.get('/requests/:userId/received', friendRequestController.getReceivedRequests);
+
+router.get('/requests/:userId/sent', friendRequestController.getSentRequests);
+
+router.put('/requests/:requestId', friendRequestController.updateRequest);
+
 export default router;

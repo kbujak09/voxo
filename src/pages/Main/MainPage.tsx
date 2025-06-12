@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { PagesType } from '../../types/main';
 
@@ -9,16 +9,20 @@ import People from './components/People';
 
 import styles from './main-page.module.scss';
 
-const Main = () => {
-  const [page, setPage] = useState<PagesType>('Chats');
+interface MainPageProps {
+  page: PagesType;
+}
 
-  const handlePageChange = (page: PagesType) => {
-    setPage(page);
-  }
+const Main = ({ page }: MainPageProps) => {
+  const navigate = useNavigate();
+
+  const handlePageChange = (newPage: PagesType) => {
+    navigate(`/${newPage.toLowerCase()}`);
+  };
 
   return (
     <div className={styles.container}>
-      <Header page={page}/>
+      <Header page={page} />
       <div className={styles.content}>
         <div style={{ display: page === 'Chats' ? 'block' : 'none' }}>
           <Chats />
@@ -30,9 +34,9 @@ const Main = () => {
           <div>tbd</div>
         </div>
       </div>
-      <Nav onNavClick={handlePageChange} chosenPage={page} />  
+      <Nav onNavClick={handlePageChange} chosenPage={page} />
     </div>
-  )
-}
+  );
+};
 
 export default Main;

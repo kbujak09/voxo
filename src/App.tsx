@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { LoginPage, RegisterPage } from './pages/Auth/index';
 import ProtectedRoute from './components/ProtectedRoute/index';
@@ -17,7 +17,10 @@ const App = () => {
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/register' element={<RegisterPage/>}/>
             <Route element={<ProtectedRoute/>}>
-              <Route path='/' element={<MainPage/>}/>
+              <Route path='/' element={<Navigate to="/chats" replace />} />
+              <Route path='/chats' element={<MainPage page="Chats" />} />
+              <Route path='/people' element={<MainPage page="People" />} />
+              <Route path='/menu' element={<MainPage page="Menu" />} />
               <Route path='/chat/:chatId' element={<ChatPage/>}/>
             </Route>
           </Routes>

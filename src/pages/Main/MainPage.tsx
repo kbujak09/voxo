@@ -4,8 +4,8 @@ import { PagesType } from '../../types/main';
 
 import Header from './components/Header';
 import Nav from './components/Nav';
-import Chats from './components/Chats';
-import People from './components/People';
+import Chats from '@/pages/Chats';
+import People from '@/pages/People';
 
 import styles from './main-page.module.scss';
 

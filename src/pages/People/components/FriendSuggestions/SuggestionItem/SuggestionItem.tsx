@@ -1,5 +1,7 @@
 import { FriendSuggestionType } from '@/types/main';
 import Avatar from '@/components/Avatar';
+import useFriendRequests from '@/hooks/useFriendRequest';
+import useAuth from '@/hooks/useAuth';
 
 import styles from './suggestion-item.module.scss';
 
@@ -8,6 +10,13 @@ type SuggestionItemProps = {
 }
 
 const SuggestionItem = ({data}: SuggestionItemProps) => {
+  const { sendRequest } = useFriendRequests();
+  const { user } = useAuth();
+
+  const [from, to] = [user?._id, data._id];
+
+  console.log(from, to)
+
   return (
     <div className={styles.container}>
       <Avatar image={data.avatar} size={48}/>
@@ -17,7 +26,10 @@ const SuggestionItem = ({data}: SuggestionItemProps) => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <button className={styles.addBtn}>
+        <button 
+          className={styles.addBtn}
+          onClick={() => sendRequest({from, to})}
+        >
           Add Friend
         </button>
       </div>

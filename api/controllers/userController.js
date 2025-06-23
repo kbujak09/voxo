@@ -1,4 +1,6 @@
 import asyncHandler from 'express-async-handler';
+import mongoose from 'mongoose';
+
 import User from '../models/User.js';
 
 export const getUserById = asyncHandler(async (req, res, next) => {
@@ -48,19 +50,44 @@ export const getUsers = asyncHandler(async (req, res, next) => {
 
 export const getSuggestedUsers = asyncHandler(async (req, res, next) => {
   const { userId } = req.params;
-  
-  if (!userId) {
-    throw new Error('No userId provided while fetching suggested users');
+
+  if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: 'Invalid userId' });
   }
 
-  const suggestedUsers = await User.find({
-    friends: { $ne: userId },
-    _id: { $ne: userId }
-  })
-  .select('username avatar');
+  const userObjectId = new mongoose.Types.ObjectId(userId);
+
+  const suggestedUsers = await User.aggregate([
+    {
+      $match: {
+        _id: { $ne: userObjectId },
+        friends: { $nin: [userObjectId] },
+      }
+    },
+    {
+      $lookup: {
+        from: 'friendrequests',
+        localField: 'receivedRequests',
+        foreignField: '_id',
+        as: 'receivedRequestDocs'
+      }
+    },
+    {
+      $match: {
+        'receivedRequestDocs.from': { $ne: userObjectId }
+      }
+    },
+    {
+      $project: {
+        username: 1,
+        avatar: 1
+      }
+    }
+  ]);
 
   res.status(200).json(suggestedUsers);
 });
+
 
 export const getRandomSuggestedUsers = asyncHandler(async (req, res, next) => {
   const { userId } = req.params;
@@ -73,7 +100,8 @@ export const getRandomSuggestedUsers = asyncHandler(async (req, res, next) => {
     {
       $match: {
         friends: { $ne: userId },
-        _id: { $ne: userId }
+        _id: { $ne: userId },
+        receivedRequests: { $ne: userId }
       }
     },
     { $sample: { size: 3 } },

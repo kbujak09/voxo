@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   avatar: { type: String, default: '' },
   friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   receivedRequests: [{ type: Schema.Types.ObjectId, ref: 'FriendRequest' }],
-  sendRequests: [{ type: Schema.Types.ObjectId, ref: 'FriendRequest' }]
+  sentRequests: [{ type: Schema.Types.ObjectId, ref: 'FriendRequest' }]
 }, { timestamps: true });
 
 export default mongoose.model('User', UserSchema);

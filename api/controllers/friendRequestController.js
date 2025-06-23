@@ -6,6 +6,7 @@ export const createFriendRequest = asyncHandler(async (req, res, next) => {
   const { from, to } = req.body;
 
   if (!from || !to) {
+    res.status(400);
     throw new Error('Friend request need both from and to.');
   }
 
@@ -19,6 +20,14 @@ export const createFriendRequest = asyncHandler(async (req, res, next) => {
 
   await request.save();
 
+  await User.findByIdAndUpdate(from, {
+      $push: { sentRequests: request._id }
+  });
+
+  await User.findByIdAndUpdate(to, {
+    $push: { receivedRequests: request._id }
+  });
+
   res.status(201).json({ message: 'Friend request created successfully!' });
 });
 
@@ -26,6 +35,7 @@ export const getReceivedRequests = asyncHandler(async (req, res, next) => {
   const { userId } = req.params;
 
   if (!userId) {
+    res.status(400);
     throw new Error('userId must be provided in getReceivedRequests function');
   }
 
@@ -51,6 +61,7 @@ export const updateRequest = asyncHandler(async (req, res, next) => {
   const { status } = req.body;
  
   if (!requestId) {
+    res.status(400);
     throw new Error('requestId must be provided in acceptRequest function')
   }
 
@@ -83,4 +94,22 @@ export const updateRequest = asyncHandler(async (req, res, next) => {
     message: `Request: ${requestId} status changed to ${status}`,
     request
   });
+});
+
+export const cancelRequest = asyncHandler(async (req, res, next) => {
+  const { requestId } = req.params;
+
+  if (!requestId) {
+    res.status(400);
+    throw new Error('requestId must be provided in cancelRequest function');
+  }
+
+  const request = await FriendRequest.findById(requestId);
+
+  if (!request) {
+    res.status(404)
+    throw new Error(`Request with id: ${requestId} does not exist`);
+  }
+
+  await request.delete();
 });

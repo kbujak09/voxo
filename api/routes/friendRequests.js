@@ -12,4 +12,6 @@ router.get('/requests/:userId/sent', friendRequestController.getSentRequests);
 
 router.put('/requests/:requestId', friendRequestController.updateRequest);
 
+router.delete('/requests/:requestId', friendRequestController.cancelRequest);
+
 export default router;

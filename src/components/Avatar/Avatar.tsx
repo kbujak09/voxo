@@ -1,4 +1,4 @@
-import defaultImage from '../../assets/default.jpg';
+import defaultImage from '@/assets/default.jpg';
 
 import styles from './avatar.module.scss';
 

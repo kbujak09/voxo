@@ -1,5 +1,6 @@
-import logoutIcon from '../../assets/logout-icon.svg';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
+
+import logoutIcon from '@/assets/logout-icon.svg';
 
 import styles from './logout-button.module.scss';
 
@@ -7,23 +8,27 @@ const LogoutButton = ({ size }: { size: number }) => {
   const { checkAuth } = useAuth();
 
   const logOut = async () => {
-    await fetch(`${import.meta.env.VITE_API}/logout`, {
+    try {
+      await fetch(`${import.meta.env.VITE_API}/logout`, {
       credentials: 'include',
       method: 'POST'
     });
     checkAuth();
+    }
+    catch (e) {
+      console.error('Logout failed: ', e);
+    }
   }
 
   return (
-    <div className={styles.container}>
+    <button className={styles.container} onClick={logOut} aria-label='log out'>
       <img 
         src={logoutIcon} 
-        alt="log out button" 
+        alt="" 
         className={styles.icon}
-        style={{width: `${size}px`}}
-        onClick={logOut}
+        style={ {width: size + 'px' }}
       />
-    </div>
+    </button>
   )
 }
 

@@ -12,11 +12,12 @@
 }
 .text {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
 }
 .active > .image {
  filter: v.$main-blue-filter;
 }
 .active > .text {
   color: v.$main-blue;
+  font-weight: 700;
 }

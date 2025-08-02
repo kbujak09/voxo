@@ -1,10 +1,10 @@
 import NavButton from './components/NavButton';
 
-import { PagesType } from '../../../../types/main';
+import { PagesType } from '@/types/main';
 
-import chatsIcon from '../../../../assets/chats-icon.svg';
-import peopleIcon from '../../../../assets/people-icon.svg';
-import menuIcon from '../../../../assets/menu-icon.svg';
+import chatsIcon from '@/assets/Nav/chats-icon.svg';
+import peopleIcon from '@/assets/Nav/people-icon.svg';
+import menuIcon from '@/assets/Nav/menu-icon.svg';
 
 import styles from './nav.module.scss';
 

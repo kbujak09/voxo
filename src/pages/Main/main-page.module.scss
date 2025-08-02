@@ -4,7 +4,7 @@
   flex-direction: column;
   box-sizing: border-box;
 }
-.content {
+.content, .content > div {
   flex: 1;
   height: 100%;
 }

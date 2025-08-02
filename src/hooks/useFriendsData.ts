@@ -7,8 +7,6 @@ const useFriendsData = (userId: string | undefined) => {
   const [suggested, setSuggested] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log(friends, receivedRequests, sentRequests, suggested)
-
   const apiLink = import.meta.env.VITE_API;
 
   useEffect(() => {

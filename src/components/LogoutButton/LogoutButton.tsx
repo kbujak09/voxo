@@ -1,6 +1,6 @@
 import useAuth from '@/hooks/useAuth';
 
-import logoutIcon from '@/assets/logout-icon.svg';
+import logoutIcon from '@/assets/Nav/logout-icon.svg';
 
 import styles from './logout-button.module.scss';
 

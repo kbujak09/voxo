@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import backButton from '../../../../assets/back-button.svg';
-import Avatar from '../../../../components/Avatar';
+import backButton from '@/assets/Nav/back-button.svg';
+import Avatar from '@/components/Avatar';
 
 import styles from './header.module.scss';
 

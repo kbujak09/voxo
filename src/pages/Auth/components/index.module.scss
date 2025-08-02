@@ -1,0 +1,124 @@
+@use '@/vars' as v;
+
+.container {
+  width: 100%;
+  margin-bottom: 12px;
+}
+.formCell {
+  display: flex;
+  flex-direction: column;
+  margin: 24px;
+
+  &:focus-within .label {
+    color: v.$main-blue;
+  }
+}
+.label {
+  margin: 0 0 4px 12px;
+  font-size: 14px;
+}
+.input {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  outline: 0;
+  font-size: 16px;
+}
+.input:focus {
+  border: 1px solid v.$main-blue;
+}
+.submitContainer {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+.submit {
+  font-size: 20px;
+  background: v.$main-blue;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.submit:active {
+  transform: scale(1.05);
+}
+.title {
+  font-size: 24px;
+  text-align: center;
+  padding-bottom: 8px;
+  font-weight: 500;
+  background: v.$main-blue;  
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.switchContainer {
+  text-align: center;
+  font-size: 14px;
+}
+.switch {
+  color: v.$main-blue;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.errorMessage {
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding-top: 12px;
+  margin: 0 24px;
+}
+@media (min-width: 600px) {
+  .formCell {
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }
+}
+@media (min-width: 900px) {
+  .formCell {
+    margin-left: 24vw;
+    margin-right: 24vw;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    margin-bottom: 4vh;
+  }
+  .formCell {
+    margin-left: 34vw;
+    margin-right: 34vw;
+  }
+  .label {
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .input {
+    padding: 8px;
+    font-size: 15px;
+  }
+  .title {
+    font-size: 30px;
+    padding-bottom: 12px;
+  }
+  .submit {
+    margin: 8px 0;
+    padding: 8px 12px;
+  }
+}
+@media (min-width: 1500px) {
+  .formCell {
+    margin-left: 38vw;
+    margin-right: 38vw;
+  }
+}

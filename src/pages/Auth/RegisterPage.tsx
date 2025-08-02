@@ -1,8 +1,8 @@
-import Logo from '../../components/Logo';
-import { Register } from './components/Register';
+import Logo from '@/components/Logo';
+import Register from './components/Register';
 import Footer from './components/Footer';
 
-import styles from './auth-pages.module.scss';
+import styles from './index.module.scss';
 
 const RegisterPage = () => {
   return (

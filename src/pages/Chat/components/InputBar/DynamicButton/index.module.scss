@@ -1,0 +1,22 @@
+@use '@/vars' as v;
+
+.container {
+  display: flex;
+  align-items: center;
+}
+.img {
+  filter: v.$main-blue-filter;
+  width: 30px;
+}
+.fade {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.75);
+  }
+  to {
+    transform: scale(1);
+  }
+}

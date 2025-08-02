@@ -1,8 +1,8 @@
-import Logo from '../../components/Logo';
-import { Login } from './components/Login';
+import Logo from '@/components/Logo';
+import Login from './components/Login';
 import Footer from './components/Footer';
 
-import styles from './auth-pages.module.scss';
+import styles from './index.module.scss';
 
 const LoginPage = () => {
   

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { UserType, AuthContextType } from '../types/auth';
+import { UserType, AuthContextType } from '@/types/auth';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

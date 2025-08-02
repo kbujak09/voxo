@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-import { PagesType } from '../../types/main';
+import { PagesType } from '@/types/main';
 
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Chats from '@/pages/Chats';
 import People from '@/pages/People';
 
-import styles from './main-page.module.scss';
+import styles from './index.module.scss';
 
 interface MainPageProps {
   page: PagesType;

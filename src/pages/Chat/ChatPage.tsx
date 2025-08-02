@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Header from './components/Header';
-import useAuth from '../../hooks/useAuth';
-import { UserType } from '../../types/auth';
-import Loading from '../../components/Loading';
+import useAuth from '@/hooks/useAuth';
+import { UserType } from '@/types/auth';
+import Loading from '@/components/Loading';
 import InputBar from './components/InputBar';
 
-import styles from './chat-page.module.scss';
+import styles from './index.module.scss';
 
 const ChatPage = () => {
   const { user } = useAuth();

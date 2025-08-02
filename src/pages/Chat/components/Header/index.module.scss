@@ -1,0 +1,14 @@
+@use '@/vars' as v;
+
+.container {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+.back {
+  margin-right: 12px;
+  filter: v.$main-blue-filter;
+}
+.username {
+  margin-left: 16px;
+}

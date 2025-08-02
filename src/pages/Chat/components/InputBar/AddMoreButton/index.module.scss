@@ -1,0 +1,16 @@
+@use '@/vars' as v;
+ 
+.btn {
+  color: white;
+  background-color: v.$main-blue;
+  border-radius: 50%;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  width: 28px;
+}

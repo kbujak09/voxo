@@ -1,0 +1,10 @@
+@use '@/vars' as v;
+
+.container {
+  display: inline-block;
+}
+.text {
+  font-family: 'Roboto Mono', sans-serif;
+  color: v.$main-blue;
+  font-weight: 700;
+}

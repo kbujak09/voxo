@@ -1,0 +1,27 @@
+@use '@/vars' as v;
+
+.container {
+  flex: 1;
+  display: flex;
+}
+.input {
+  width: 100%;
+  margin: 0;
+  padding: 4px 12px;
+  border: 1px solid rgb(161, 161, 161);
+  box-sizing: border-box;
+  border-radius: 15px;
+  font-size: 16px;
+  resize: none;
+  overflow: hidden;
+  font-family: inherit;
+  height: 30px;
+  line-height: 19.2px;
+}
+.input:focus {
+  border: 1px solid rgb(134, 134, 249);
+  outline: 0;
+}
+.input::placeholder {
+  padding-left: 2px;
+}

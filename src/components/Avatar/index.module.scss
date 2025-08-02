@@ -1,0 +1,11 @@
+@use '@/vars' as v;
+
+.container {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.container > img {
+  border-radius: 50%;
+}

@@ -7,17 +7,6 @@ import PeopleCarousel from './components/PeopleCarousel';
 import styles from './index.module.scss';
 
 const People = () => {
-  const { user } = useAuth();
-
-  const userId = user?._id;
-  const { 
-          loading, 
-          friends, 
-          suggested, 
-          receivedRequests, 
-          sentRequests 
-        } = useFriendsData(userId);
-
   return (
     <div className={styles.container}>
       <PeopleCarousel />

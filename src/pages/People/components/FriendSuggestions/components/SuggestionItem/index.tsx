@@ -15,9 +15,11 @@ const SuggestionItem = ({data}: SuggestionItemProps) => {
 
   const [from, to] = [user?._id, data._id];
 
+  console.log(user);
+
   return (
     <div className={styles.container}>
-      <Avatar image={data.avatar} size={48}/>
+      <Avatar image={data.avatar} size={52}/>
       <div className={styles.userInfo}>
         <div className={styles.username}>
           { data.username }

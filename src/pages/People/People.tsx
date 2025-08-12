@@ -1,8 +1,4 @@
-import useAuth from '@/hooks/useAuth';
-import useFriendsData from '@/hooks/useFriendsData';
-
 import PeopleCarousel from './components/PeopleCarousel';
-
 
 import styles from './index.module.scss';
 

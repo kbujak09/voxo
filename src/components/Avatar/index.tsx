@@ -2,7 +2,7 @@ import defaultImage from '@/assets/default.jpg';
 
 import styles from './index.module.scss';
 
-const Avatar = ({image, size}: {image: string, size: number}) => {
+const Avatar = ({image, size}: {image: string, size: number, borderColor: string}) => {
   return (
     <div className={styles.container} style={{ width: size , height: size}}>
       {image.length === 0 ? <img style={{width: size}} src={defaultImage}/> : <img style={{width: size}} src={image}/>}

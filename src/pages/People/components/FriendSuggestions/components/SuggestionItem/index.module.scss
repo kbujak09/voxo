@@ -3,17 +3,17 @@
 .container {
   display: grid;
   grid-template-columns: min-content min-content 1fr;
-  gap: 16px;
+  gap: 24px;
 }
 .userInfo {
   margin: 4px 0;
 }
 .addBtn {
-  background-color: white;
-  border: 1px solid v.$main-blue;
-  padding: 4px 8px;
-  border-radius: 5px;
-  color: v.$main-blue;
+  background-color: #00bc45;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 0;
+  color: white;
 }
 .buttons {
   flex: 1;

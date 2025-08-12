@@ -1,0 +1,8 @@
+@use '@/vars' as v;
+
+.title {
+  text-align: center;
+  font-weight: 500;
+  color: v.$main-blue;
+  font-size: 17px;
+}

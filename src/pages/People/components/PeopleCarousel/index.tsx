@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 import useAuth from '@/hooks/useAuth';
 import useFriendsData from '@/hooks/useFriendsData';
 import CarouselButton from './components/CarouselButton';
+import FriendSuggestions from '../FriendSuggestions';
+import FriendList from '../FriendList';
 
 import styles from './index.module.scss';
-import FriendSuggestions from '../FriendSuggestions';
 
 const PeopleCarousel = () => {
   const { user } = useAuth();
@@ -21,7 +22,7 @@ const PeopleCarousel = () => {
 
   const [activeIndex, setActiveIndex] = useState(1);
 
-  const items = [<FriendSuggestions data={suggested}/>, <div></div>, <div></div>];
+  const items = [<FriendSuggestions data={suggested}/>, <FriendList data={friends}/>, <div></div>];
 
   const slideLeft = () => {
     return setActiveIndex(i => (i > 0 ? i - 1 : items.length - 1));

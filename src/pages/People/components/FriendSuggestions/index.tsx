@@ -1,4 +1,4 @@
-import SuggestionItem from './SuggestionItem';
+import SuggestionItem from './components/SuggestionItem';
 import { FriendSuggestionType } from '@/types/main';
 
 import styles from './index.module.scss';

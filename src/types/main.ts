@@ -5,3 +5,7 @@ export type FriendSuggestionType = {
   username: string,
   _id: string
 };
+
+export type FriendType = {
+  data: any
+};

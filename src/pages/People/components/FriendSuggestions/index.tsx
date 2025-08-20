@@ -11,7 +11,9 @@ const FriendSuggestions = ({data}: FriendSuggestionsProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
-        Friend Suggestions
+        <span>
+          FRIEND SUGGESTIONS
+        </span>
       </div>
       <div className={styles.list}>
         {

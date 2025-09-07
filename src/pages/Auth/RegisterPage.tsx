@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 const RegisterPage = () => {
   return (
     <div className={styles.container}>
-      <Logo  size={36}/>
+      <Logo  size={32}/>
       <Register />
       <Footer />
     </div>

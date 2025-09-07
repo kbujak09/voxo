@@ -8,7 +8,7 @@ const LoginPage = () => {
   
   return (
     <div className={styles.container}>
-      <Logo size={36}/>
+      <Logo size={32}/>
       <Login />
       <Footer />
     </div>

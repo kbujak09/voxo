@@ -50,61 +50,63 @@ const Register = () => {
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
-      <div className={styles.title}>
-        Create an account
-      </div>
-      <div className={styles.formCell}>
-        <label 
-          htmlFor="username" 
-          className={styles.label}>
-            username
-          </label>
-        <input 
-          id="username"
-          name="username"
-          type="text" 
-          className={styles.input}
-          onChange={(e) => setUsername(e.target.value)}
-        />  
-      </div>
-      <div className={styles.formCell}>
-        <label 
-          htmlFor="password" 
-          className={styles.label}>
-            password
-          </label>
-        <input 
-          id="password"
-          name="password"
-          type="password" 
-          className={styles.input}
-          onChange={(e) => setPassword(e.target.value)}
-        /> 
-      </div>
-      <div className={styles.formCell}>
-        <label 
-          htmlFor="confirmPassword" 
-          className={styles.label}>
-            confirm password
-          </label>
-        <input 
-          id="confirmPassword"
-          name="confirmPassword"
-          type="password" 
-          className={styles.input}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        /> 
-      </div>
-      <div className={styles.submitContainer}>
-        <button className={styles.submit}>
-          SIGN UP
-        </button>
-      </div>
-      <div className={styles.switchContainer}>
-        Already have an account? <span onClick={() => {navigate('/login')}} className={styles.switch}>Log in</span>
-      </div>
-      <div className={styles.errorMessage}>
-        {message}
+      <div className={styles.shadow}>
+        <div className={styles.title}>
+          Create an account
+        </div>
+        <div className={styles.formCell}>
+          <label 
+            htmlFor="username" 
+            className={styles.label}>
+              username
+            </label>
+          <input 
+            id="username"
+            name="username"
+            type="text" 
+            className={styles.input}
+            onChange={(e) => setUsername(e.target.value)}
+          />  
+        </div>
+        <div className={styles.formCell}>
+          <label 
+            htmlFor="password" 
+            className={styles.label}>
+              password
+            </label>
+          <input 
+            id="password"
+            name="password"
+            type="password" 
+            className={styles.input}
+            onChange={(e) => setPassword(e.target.value)}
+          /> 
+        </div>
+        <div className={styles.formCell}>
+          <label 
+            htmlFor="confirmPassword" 
+            className={styles.label}>
+              confirm password
+            </label>
+          <input 
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password" 
+            className={styles.input}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          /> 
+        </div>
+        <div className={styles.submitContainer}>
+          <button className={styles.submit}>
+            SIGN UP
+          </button>
+        </div>
+        <div className={styles.switchContainer}>
+          Already have an account? <span onClick={() => {navigate('/login')}} className={styles.switch}>Log in</span>
+        </div>
+        <div className={styles.errorMessage}>
+          {message}
+        </div>
       </div>
     </form>
   )
